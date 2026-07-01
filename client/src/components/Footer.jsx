@@ -15,7 +15,7 @@ function Footer() {
 
         {/* GitHub */}
         <motion.a
-          href="https://github.com/yourusername"
+          href="https://github.com/Shouvanik21/GeekCoder"
           target="_blank"
           rel="noopener noreferrer"
           whileHover={{ scale: 1.15, rotate: 8 }}

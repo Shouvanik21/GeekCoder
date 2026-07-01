@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { WandSparkles, RotateCcw, Cpu, Zap, Globe } from "lucide-react";
 import { motion } from "framer-motion";
+import { convertCode } from "../api/converterApi";
+import { detectLanguage } from "../api/detectLanguageApi";
 
 import LanguageSelector from "./LanguageSelector";
 import CodeEditor from "./CodeEditor";
@@ -10,32 +12,56 @@ function Converter() {
   const [fromLanguage, setFromLanguage] = useState("JavaScript");
   const [toLanguage, setToLanguage] = useState("Python");
 
-  const [code, setCode] = useState(`function greet(name) {
-    console.log("Hello " + name);
-}
-
-greet("GeekCoder");
-`);
+  const [code, setCode] = useState("");
 
   const [output, setOutput] = useState("");
 
   const [loading, setLoading] = useState(false);
 
   const handleConvert = async () => {
-    if (!code.trim()) return;
+  if (!code.trim()) return;
 
+  try {
     setLoading(true);
 
-    // Temporary demo
-    setTimeout(() => {
-      setOutput(`def greet(name):
-    print("Hello " + name)
+    // Detect language
+    const detected = await detectLanguage(code);
 
-greet("GeekCoder")`);
-
+    if (
+      detected.success &&
+      detected.language.toLowerCase() !==
+        fromLanguage.toLowerCase()
+    ) {
       setLoading(false);
-    }, 1800);
-  };
+
+      const proceed = window.confirm(
+        `Language mismatch!\n\nDetected: ${detected.language}\nSelected: ${fromLanguage}\n\nDo you want to change the source language automatically?`
+      );
+
+      if (proceed) {
+        setFromLanguage(detected.language);
+      }
+
+      return;
+    }
+
+    // Convert
+    const response = await convertCode({
+      sourceLanguage: fromLanguage,
+      targetLanguage: toLanguage,
+      code,
+    });
+
+    if (response.success) {
+      setOutput(response.convertedCode);
+    }
+  } catch (error) {
+    console.error(error);
+    setOutput("Something went wrong.");
+  } finally {
+    setLoading(false);
+  }
+};
 
   const handleReset = () => {
     setCode("");
