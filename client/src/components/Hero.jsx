@@ -14,23 +14,20 @@ function Hero() {
 
   return (
     <section className="relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 pt-28 pb-24">
+      <div id="hero-main" className="w-full mx-auto px-6 pt-28 pb-24 flex flex-col items-center justify-center text-center">
         {/* Heading */}
 
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
+          id="hero-top"
           className="mt-10 text-center text-6xl md:text-8xl font-black leading-tight"
         >
-          <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-500 bg-clip-text text-transparent">
-            GeekCoder
-          </span>
-          <br />
           <span className="text-white">Transform</span>{" "}
           <span className="text-green-400">{"{Code}"}</span>
           <br />
-          <span className="text-white">Across Languages</span>
+          <span className="text-white">Beyond Boundaries</span>
         </motion.h1>
 
         {/* Description */}
@@ -39,10 +36,9 @@ function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.4 }}
-          className="mx-auto mt-8 max-w-3xl text-center text-lg text-gray-400 md:text-xl"
+          className="mx-auto mt-8 max-w-3xl text-center text-lg text-gray-300 md:text-xl font-light"
         >
-          Convert code between Java, Python, C++, JavaScript, Go, Rust and many
-          more languages using lightning-fast AI powered by Groq.
+          With GeekCoder, just think once and code everywhere!!
         </motion.p>
       </div>
     </section>

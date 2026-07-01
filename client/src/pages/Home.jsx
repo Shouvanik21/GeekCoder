@@ -9,7 +9,7 @@ function Home() {
     <>
       <Background />
 
-      <div className="relative min-h-screen">
+      <div className="relative min-h-screen w-full">
         <Navbar />
 
         <Hero />

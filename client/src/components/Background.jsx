@@ -1,94 +1,36 @@
-function Background() {
+import { Canvas } from "@react-three/fiber";
+import StarField from "./BackgroundCards/Starfield";
+import ShootingStars from "./BackgroundCards/ShootingStars";
+import Effects from "./BackgroundCards/Effects";
+import { useThree, useFrame } from "@react-three/fiber";
+
+function CameraRig() {
+  const { camera, mouse } = useThree();
+
+  useFrame(() => {
+    camera.position.x += (mouse.x * 2 - camera.position.x) * 0.04;
+
+    camera.position.y += (mouse.y * 1.2 - camera.position.y) * 0.04;
+
+    camera.lookAt(0, 0, 0);
+  });
+
+  return null;
+}
+
+export default function Background() {
   return (
-    <div className="fixed inset-0 -z-50 overflow-hidden">
-      {/* Base Background */}
+    <div className="fixed inset-0 -z-10">
+      <Canvas camera={{ position: [0, 0, 25] }}>
+        <fog attach="fog" args={["#020617", 20, 70]} />
+        <color attach="background" args={["#020617"]} />
 
-      <div className="absolute inset-0 bg-[#030712]" />
-
-      {/* Aurora Layer */}
-
-      <div
-        className="
-        absolute
-        top-[-250px]
-        left-[-200px]
-        w-[700px]
-        h-[700px]
-        rounded-full
-        bg-cyan-500/20
-        blur-[140px]
-        float-animation
-      "
-      />
-
-      <div
-        className="
-        absolute
-        bottom-[-300px]
-        right-[-200px]
-        w-[700px]
-        h-[700px]
-        rounded-full
-        bg-purple-600/20
-        blur-[150px]
-        float-animation
-      "
-        style={{
-          animationDelay: "2s",
-        }}
-      />
-
-      {/* Center Glow */}
-
-      <div
-        className="
-        absolute
-        top-[20%]
-        left-1/2
-        -translate-x-1/2
-        w-[500px]
-        h-[500px]
-        rounded-full
-        bg-blue-500/10
-        blur-[120px]
-        glow-animation
-      "
-      />
-
-      {/* Rotating Ring */}
-
-      <div
-        className="
-        absolute
-        top-1/2
-        left-1/2
-        -translate-x-1/2
-        -translate-y-1/2
-        w-[900px]
-        h-[900px]
-        border
-        border-cyan-500/5
-        rounded-full
-        rotate-animation
-      "
-      />
-
-      {/* Grid Overlay */}
-
-      <div
-        className="
-        absolute
-        inset-0
-        opacity-[0.03]
-      "
-        style={{
-          backgroundImage:
-            "linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(90deg, #ffffff 1px, transparent 1px)",
-          backgroundSize: "40px 40px",
-        }}
-      />
+        <ambientLight intensity={2} />
+        <StarField />
+        <ShootingStars />
+        <Effects />
+        <CameraRig />
+      </Canvas>
     </div>
   );
 }
-
-export default Background;

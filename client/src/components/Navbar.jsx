@@ -19,7 +19,7 @@ function Navbar() {
       transition={{ duration: 0.8 }}
       className="sticky top-0 z-50 border-b border-white/10 bg-black/20 backdrop-blur-xl"
     >
-      <div className="mx-auto h-20 w-[100%] p-[100px] flex items-center justify-between">
+      <div id="nav-main" className="mx-auto h-20 w-full p-25 flex items-center justify-between">
         {/* Logo */}
 
         <div className="p-6 flex items-center gap-4">
@@ -52,6 +52,7 @@ function Navbar() {
             scale: 0.95,
           }}
           onClick={scrollToConverter}
+          id="nav-right"
           className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-cyan-500 to-purple-600 px-6 py-3 font-semibold shadow-xl shadow-cyan-500/20"
         >
           <Sparkles size={18} />

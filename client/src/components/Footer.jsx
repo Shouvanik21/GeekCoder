@@ -4,7 +4,7 @@ import { FaGithub } from "react-icons/fa";
 function Footer() {
   return (
     <footer className="mt-24 border-t border-white/10 bg-black/20 backdrop-blur-xl">
-      <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-6">
+      <div id="footer-main" className="w-full mx-auto flex items-center justify-between px-6 py-6">
         {/* App Name */}
         <motion.h2
           whileHover={{ scale: 1.03 }}
