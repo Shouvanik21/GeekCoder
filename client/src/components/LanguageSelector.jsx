@@ -20,13 +20,14 @@ function LanguageSelector({
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
       viewport={{ once: true }}
+      id="ls-main"
       className="mb-10"
     >
-      <div className="rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl p-6 shadow-2xl">
+      <div id="ls-first" className="rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl p-6 shadow-2xl">
         <div className="flex flex-col lg:flex-row items-center gap-6">
           {/* From */}
 
-          <div className="flex-1 w-full">
+          <div id="left" className="flex-1 w-full">
             <label className="block mb-2 text-sm font-semibold text-gray-400">
               From Language
             </label>
@@ -62,7 +63,7 @@ function LanguageSelector({
 
           {/* To */}
 
-          <div className="flex-1 w-full">
+          <div id="right" className="flex-1 w-full">
             <label className="block mb-2 text-sm font-semibold text-gray-400">
               To Language
             </label>

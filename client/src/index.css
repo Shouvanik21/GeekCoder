@@ -117,3 +117,81 @@ body {
 footer{
   margin-top:100px;
 }
+
+/*code-converter*/
+#converter{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+}
+#language{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding: 20px;
+}
+#ls-main{
+  width:800px;
+}
+#ls-first{
+  padding: 20px;
+  padding-bottom: 25px;
+}
+#left label{
+  margin-bottom: 10px;
+}
+#left select{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  padding-right: 30px;
+}
+#right label{
+  margin-bottom: 10px;
+}
+#right select{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  padding-right: 30px;
+}
+
+#editors{
+  padding: 20px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap: 40px;
+}
+#input-editor,#output-editor{
+  width: 600px;
+}
+#ie-top,#oe-top{
+  padding: 10px;
+}
+#ie-top-right,#oe-top-right{
+  margin-right: 10px;
+}
+#oe-top-right button{
+  padding: 5px;
+}
+#ie-bottom,#oe-bottom{
+  padding: 10px;
+}
+
+#cb{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding: 20px;
+  width:1200px;
+}
+#cb button{
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 8px;
+}

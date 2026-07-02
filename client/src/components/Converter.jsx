@@ -69,10 +69,10 @@ function Converter() {
   };
 
   return (
-    <section id="converter" className="max-w-7xl mx-auto px-6 py-24">
+    <section id="converter" className="w-full mx-auto px-6 py-24">
       {/* Language Selector */}
 
-      <div className="mt-12">
+      <div id="language" className="w-full mt-12">
         <LanguageSelector
           fromLanguage={fromLanguage}
           toLanguage={toLanguage}
@@ -83,7 +83,7 @@ function Converter() {
 
       {/* Editors */}
 
-      <div className="grid xl:grid-cols-2 gap-8 mt-10">
+      <div id="editors" className="w-full grid xl:grid-cols-2 gap-8 mt-10">
         <CodeEditor code={code} setCode={setCode} language={fromLanguage} />
 
         <OutputEditor output={output} language={toLanguage} />
@@ -91,7 +91,7 @@ function Converter() {
 
       {/* Buttons */}
 
-      <div className="flex flex-wrap justify-center gap-6 mt-12">
+      <div id ="cb" className="flex flex-wrap justify-center gap-6 mt-12">
         <motion.button
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
@@ -108,7 +108,7 @@ function Converter() {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           onClick={handleReset}
-          className="flex items-center gap-3 rounded-2xl border border-red-500 px-10 py-4 text-lg text-red-400 transition hover:bg-red-500 hover:text-white"
+          className="flex items-center gap-3 rounded-2xl border border-red-500 bg-red-500 px-10 py-4 text-lg text-white-400 transition hover:bg-red-500 hover:text-white"
         >
           <RotateCcw size={22} />
           Reset

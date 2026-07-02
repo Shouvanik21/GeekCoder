@@ -28,10 +28,10 @@ function getMonacoLanguage(lang) {
 
 function CodeEditor({ code, setCode, language }) {
   return (
-    <div className="overflow-hidden rounded-3xl border border-white/10 bg-[#0d1117] shadow-2xl">
+    <div id="input-editor" className="overflow-hidden rounded-3xl border border-white/10 bg-[#0d1117] shadow-2xl">
       {/* VS Code Header */}
 
-      <div className="flex items-center justify-between border-b border-white/10 bg-[#161b22] px-5 py-3">
+      <div id="ie-top" className="flex items-center justify-between border-b border-white/10 bg-[#161b22] px-5 py-3">
         <div className="flex items-center gap-3">
           <div className="flex gap-2">
             <span className="h-3 w-3 rounded-full bg-red-500"></span>
@@ -46,7 +46,7 @@ function CodeEditor({ code, setCode, language }) {
           </div>
         </div>
 
-        <span className="text-sm text-cyan-400">{language}</span>
+        <span id="ie-top-right" className="text-sm text-cyan-400">{language}</span>
       </div>
 
       <Editor
@@ -70,7 +70,7 @@ function CodeEditor({ code, setCode, language }) {
 
       {/* Footer */}
 
-      <div className="flex justify-between border-t border-white/10 bg-[#161b22] px-5 py-2 text-xs text-gray-400">
+      <div id="ie-bottom" className="flex justify-between border-t border-white/10 bg-[#161b22] px-5 py-2 text-xs text-gray-400">
         <span>{language}</span>
 
         <span>{code.split("\n").length} Lines</span>

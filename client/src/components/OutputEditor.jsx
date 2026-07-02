@@ -50,8 +50,8 @@ function OutputEditor({ output, language }) {
   };
 
   return (
-    <div className="overflow-hidden rounded-3xl border border-white/10 bg-[#0d1117] shadow-2xl">
-      <div className="flex items-center justify-between border-b border-white/10 bg-[#161b22] px-5 py-3">
+    <div id="output-editor" className="overflow-hidden rounded-3xl border border-white/10 bg-[#0d1117] shadow-2xl">
+      <div id="oe-top" className="flex items-center justify-between border-b border-white/10 bg-[#161b22] px-5 py-3">
         <div className="flex items-center gap-3">
           <div className="flex gap-2">
             <span className="h-3 w-3 rounded-full bg-red-500"></span>
@@ -66,7 +66,7 @@ function OutputEditor({ output, language }) {
           </div>
         </div>
 
-        <div className="flex gap-3">
+        <div id="oe-top-right" className="flex gap-3">
           <button
             onClick={copyCode}
             className="rounded-lg bg-cyan-500 px-3 py-2 hover:bg-cyan-400 transition"
@@ -102,7 +102,7 @@ function OutputEditor({ output, language }) {
         }}
       />
 
-      <div className="flex justify-between border-t border-white/10 bg-[#161b22] px-5 py-2 text-xs text-gray-400">
+      <div id="oe-bottom" className="flex justify-between border-t border-white/10 bg-[#161b22] px-5 py-2 text-xs text-gray-400">
         <span>{language}</span>
 
         <span>{output.split("\n").length} Lines</span>

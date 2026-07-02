@@ -23,7 +23,7 @@ export default function Background() {
     <div className="fixed inset-0 -z-10">
       <Canvas camera={{ position: [0, 0, 25] }}>
         <fog attach="fog" args={["#020617", 20, 70]} />
-        <color attach="background" args={["#020617"]} />
+        <color attach="background" args={["#020002"]} />
 
         <ambientLight intensity={2} />
         <StarField />
