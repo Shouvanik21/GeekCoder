@@ -1,5 +1,6 @@
 import Editor from "@monaco-editor/react";
 import { Copy, Download, FileCode2 } from "lucide-react";
+import languages from "../data/languages";
 
 function getMonacoLanguage(lang) {
   const map = {
@@ -26,7 +27,7 @@ function getMonacoLanguage(lang) {
   return map[lang] || "plaintext";
 }
 
-function OutputEditor({ output, language }) {
+function OutputEditor({ output, language, toLanguage, setToLanguage }) {
   const copyCode = () => {
     navigator.clipboard.writeText(output);
   };
@@ -50,8 +51,31 @@ function OutputEditor({ output, language }) {
   };
 
   return (
-    <div id="output-editor" className="overflow-hidden rounded-3xl border border-white/10 bg-[#0d1117] shadow-2xl">
-      <div id="oe-top" className="flex items-center justify-between border-b border-white/10 bg-[#161b22] px-5 py-3">
+    <div
+      id="output-editor"
+      className="overflow-hidden rounded-xl border border-white/10 bg-[#0d1117] shadow-2xl"
+    >
+      <div id="ls-right" className="flex-1 w-full bg-[#333333]">
+        <label className="block mb-2 text-sm font-semibold text-gray-400">
+          To Language
+        </label>
+
+        <select
+          value={toLanguage}
+          onChange={(e) => setToLanguage(e.target.value)}
+          className="w-full rounded-md border border-[#222222] bg-[#222222] px-5 py-4 text-white outline-none transition focus:border-cyan-400 text-sm"
+        >
+          {languages.map((language) => (
+            <option key={language} value={language}>
+              {language}
+            </option>
+          ))}
+        </select>
+      </div>
+      <div
+        id="oe-top"
+        className="flex items-center justify-between border-b border-white/10 bg-[#1e1e1e] px-5 py-3"
+      >
         <div className="flex items-center gap-3">
           <div className="flex gap-2">
             <span className="h-3 w-3 rounded-full bg-red-500"></span>
@@ -102,7 +126,10 @@ function OutputEditor({ output, language }) {
         }}
       />
 
-      <div id="oe-bottom" className="flex justify-between border-t border-white/10 bg-[#161b22] px-5 py-2 text-xs text-gray-400">
+      <div
+        id="oe-bottom"
+        className="flex justify-between border-t border-white/10 bg-[#1e1e1e] px-5 py-2 text-xs text-gray-400"
+      >
         <span>{language}</span>
 
         <span>{output.split("\n").length} Lines</span>

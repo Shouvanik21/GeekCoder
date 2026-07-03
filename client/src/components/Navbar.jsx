@@ -28,13 +28,13 @@ function Navbar() {
               rotate: 12,
               scale: 1.08,
             }}
-            className="flex h-12 w-12 items-center justify-center rounded-2xl border border-cyan-400/30 bg-gradient-to-br from-cyan-500/20 to-purple-500/20 shadow-lg shadow-cyan-500/20"
+            className="flex h-12 w-12 items-center justify-center rounded-2xl border border-cyan-400/30 bg-[#111111] shadow-lg shadow-cyan-500/20"
           >
             <Code2 className="text-cyan-400" size={28} />
           </motion.div>
 
           <div>
-            <h1 className="text-3xl font-black tracking-tight bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-500 bg-clip-text text-transparent">
+            <h1 className="text-3xl font-black tracking-tight text-cyan-500 bg-clip-text font-medium">
               GeekCoder
             </h1>
 
@@ -53,7 +53,7 @@ function Navbar() {
           }}
           onClick={scrollToConverter}
           id="nav-right"
-          className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-cyan-500 to-purple-600 px-6 py-3 font-semibold shadow-xl shadow-cyan-500/20"
+          className="flex items-center gap-2 rounded-xl bg-cyan-500 px-6 text-gray-100 py-3 font-semibold shadow-xl shadow-cyan-500/20"
         >
           <Sparkles size={18} />
           Start Converting

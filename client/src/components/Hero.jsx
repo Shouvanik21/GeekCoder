@@ -25,7 +25,7 @@ function Hero() {
           className="mt-10 text-center text-6xl md:text-8xl font-black leading-tight"
         >
           <span className="text-white">Transform</span>{" "}
-          <span className="text-green-400">{"{Code}"}</span>
+          <span className="text-cyan-400">{"{Code}"}</span>
           <br />
           <span className="text-white">Beyond Boundaries</span>
         </motion.h1>
