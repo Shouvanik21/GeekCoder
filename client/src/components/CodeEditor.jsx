@@ -83,7 +83,7 @@ function CodeEditor({
       </div>
 
       <Editor
-        height="500px"
+        height="400px"
         theme="vs-dark"
         language={getMonacoLanguage(language)}
         value={code}

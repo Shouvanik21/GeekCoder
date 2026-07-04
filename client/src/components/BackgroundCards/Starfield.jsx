@@ -8,28 +8,33 @@ const FIELD_SIZE = 250;
 export default function Starfield() {
   const materialRef = useRef();
 
-  const { positions, scales, brightness } = useMemo(() => {
+  const { positions, scales, brightness, velocity } = useMemo(() => {
     const positions = new Float32Array(STAR_COUNT * 3);
     const scales = new Float32Array(STAR_COUNT);
     const brightness = new Float32Array(STAR_COUNT);
+    const velocity = new Float32Array(STAR_COUNT * 3);
 
     for (let i = 0; i < STAR_COUNT; i++) {
       positions[i * 3] = (Math.random() - 0.5) * FIELD_SIZE;
       positions[i * 3 + 1] = (Math.random() - 0.5) * FIELD_SIZE;
       positions[i * 3 + 2] = (Math.random() - 0.5) * FIELD_SIZE;
 
+      velocity[i * 3] = (Math.random() - 0.5) * 0.15;
+      velocity[i * 3 + 1] = (Math.random() - 0.5) * 0.15;
+      velocity[i * 3 + 2] = (Math.random() - 0.5) * 0.15;
+
       // Slight size variation
       if (Math.random() < 0.97) {
-  scales[i] = Math.random() * 0.5 + 0.4;
-} else {
-  scales[i] = Math.random() * 1.2 + 1.2;
-}
+        scales[i] = Math.random() * 0.5 + 0.4;
+      } else {
+        scales[i] = Math.random() * 1.2 + 1.2;
+      }
 
       // Different brightness
       brightness[i] = Math.pow(Math.random(), 3.0);
     }
 
-    return { positions, scales, brightness };
+    return { positions, scales, brightness, velocity };
   }, []);
 
   useFrame(({ clock }) => {
@@ -61,6 +66,12 @@ export default function Starfield() {
           count={STAR_COUNT}
           itemSize={1}
         />
+        <bufferAttribute
+          attach="attributes-aVelocity"
+          array={velocity}
+          count={STAR_COUNT}
+          itemSize={3}
+        />
       </bufferGeometry>
 
       <shaderMaterial
@@ -71,30 +82,41 @@ export default function Starfield() {
         uniforms={{
           uTime: { value: 0 },
         }}
-        vertexShader={`
-          attribute float aScale;
-          attribute float aBrightness;
+        vertexShader={`attribute float aScale;
+attribute float aBrightness;
+attribute vec3 aVelocity;
 
-          varying float vBrightness;
+varying float vBrightness;
 
-          uniform float uTime;
+uniform float uTime;
 
-          void main() {
+void main() {
 
-              vBrightness = aBrightness;
+    // Independent twinkling
+    float twinkle =
+        0.7 +
+        0.3 *
+        sin(
+            uTime * (0.5 + fract(position.x * 5.73) * 2.0) +
+            position.y * 2.3 +
+            position.z
+        );
 
-              vec3 pos = position;
+    vBrightness = aBrightness * twinkle;
 
-              // Gentle drifting
-              pos.y += sin(uTime * 0.08 + position.x) * 0.2;
+    vec3 pos = position + aVelocity * uTime;
 
-              vec4 mvPosition = modelViewMatrix * vec4(pos, 1.0);
+    // Dust-like drifting
+    pos.x += sin(uTime * 0.2 + position.y) * 5.0;
+    pos.y += cos(uTime * 0.2 + position.x) * 5.0;
+    pos.z += sin(uTime * 0.2 + position.z) * 5.0;
 
-              gl_Position = projectionMatrix * mvPosition;
+    vec4 mvPosition = modelViewMatrix * vec4(pos, 1.0);
 
-              gl_PointSize = aScale * 1.6 * (300.0 / -mvPosition.z);
-          }
-        `}
+    gl_Position = projectionMatrix * mvPosition;
+
+    gl_PointSize = aScale * 1.6 * (300.0 / -mvPosition.z);
+}`}
         fragmentShader={`
           varying float vBrightness;
 

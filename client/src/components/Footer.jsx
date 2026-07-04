@@ -1,17 +1,18 @@
 import { motion } from "framer-motion";
 import { FaGithub } from "react-icons/fa";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
 
 function Footer() {
   return (
     <footer className="mt-24 border-t border-white/10 bg-black/20 backdrop-blur-xl">
       <div id="footer-main" className="w-full mx-auto flex items-center justify-between px-6 py-6">
         {/* App Name */}
-        <motion.h2
-          whileHover={{ scale: 1.03 }}
-          className="text-3xl font-black bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-500 bg-clip-text text-transparent cursor-default"
-        >
-          GeekCoder
-        </motion.h2>
+        <div className="bottom">
+            <div id="box" className="flex items-center justify-between gap-2 text-white border border-[2px] border-cyan-400/30 bg-[#111111] rounded-md shadow-cyan-500/20">
+                Made with <FontAwesomeIcon icon={faHeart} style={{color: "rgb(116, 192, 252)",}} /> by <h3>Shouvanik</h3>
+            </div>
+        </div>
 
         {/* GitHub */}
         <motion.a

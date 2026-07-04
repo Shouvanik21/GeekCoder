@@ -170,11 +170,18 @@ footer{
   display:flex;
   justify-content:center;
   align-items:center;
-  gap: 60px;
+  gap: 75px;
 }
+.monaco-editor .line-numbers {
+  padding-left: 35px;
+}
+
 #input-editor,#output-editor{
-  width: 650px;
+  width: 630px;
   height: 550px;
+}
+#input-editor{
+  margin-right: 25px;
 }
 #ie-top,#oe-top{
   padding: 10px;
@@ -187,6 +194,9 @@ footer{
 }
 #ie-bottom,#oe-bottom{
   padding: 10px;
+}
+#oe-bottom{
+  padding-top: 5px;
 }
 
 #cb{
@@ -201,4 +211,13 @@ footer{
   font-size: 16px;
   font-weight: 600;
   border-radius: 8px;
+}
+
+#box{
+  padding: 5px;
+  box-shadow: 0px 0px 8px #80b9c8;
+}
+#box h3{
+  font-size: 20px;
+  font-weight: 600;
 }

@@ -108,7 +108,7 @@ function OutputEditor({ output, language, toLanguage, setToLanguage }) {
       </div>
 
       <Editor
-        height="500px"
+        height="400px"
         theme="vs-dark"
         language={getMonacoLanguage(language)}
         value={output}
